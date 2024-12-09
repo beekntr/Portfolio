@@ -1,0 +1,16 @@
+:root {
+  --yellow-500: #eab308;
+  --red-500: #ef4444;
+  --blue-500: #3b82f6;
+  --cyan-500: #06b6d4;
+  --violet-500: #8b5cf6;
+}
+
+/* If you're using dark mode */
+.dark {
+  --yellow-500: #fbbf24;
+  --red-500: #f87171;
+  --blue-500: #60a5fa;
+  --cyan-500: #22d3ee;
+  --violet-500: #a78bfa;
+}
