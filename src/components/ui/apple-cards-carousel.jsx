@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState, createContext, useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX, IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
+import React, {useState, createContext} from "react";
+import {  IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 
 // Create context
 const CarouselContext = createContext({
