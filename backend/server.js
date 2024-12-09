@@ -6,11 +6,23 @@ require('dotenv').config();
 
 const app = express();
 
-// Update CORS for production
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000, http://kshitijsinghbhati.in',
-  credentials: true
-}));
+// CORS configuration
+const corsOptions = {
+  origin: [
+    'https://kshitijsinghbhati.in',
+    'https://www.kshitijsinghbhati.in',
+    // Include your local development URL if needed
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // MongoDB connection
