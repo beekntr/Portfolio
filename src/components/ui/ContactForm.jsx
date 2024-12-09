@@ -24,7 +24,9 @@ export function ContactForm() {
     try {
       console.log('Sending form data:', formData);
 
-      const response = await fetch(`${API_URL}/api/contact`, {
+      const url = 'https://portfolio-backend-v9ve.onrender.com/api/contact';
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
