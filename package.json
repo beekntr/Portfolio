@@ -1,6 +1,7 @@
 {
-  "name": "port",
-  "version": "0.1.0",
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "@tabler/icons-react": "^3.24.0",
@@ -18,12 +19,13 @@
     "react-icon-cloud": "^4.1.4",
     "react-scripts": "5.0.1",
     "tailwind-merge": "^2.5.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "express": "^4.17.1"
   },
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "dev": "nodemon src/index.ts"
+    "start": "node src/index.js",
+    "build": "echo 'Build completed'",
+    "dev": "nodemon src/index.js"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +48,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "nodemon": "^2.0.15"
   }
 }
