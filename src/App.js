@@ -105,7 +105,7 @@ function App() {
       title: "Employee Management System",
       src: project2Image,
       githubLink: "https://github.com/Manas-xt/employee-management-system",
-      websiteLink: "https://nspproject.kshitijsinghbhati.in",
+      websiteLink: "https://ems.kshitijsinghbhati.com",
       content: <DummyContent />,
     },
     // Add more projects as needed
