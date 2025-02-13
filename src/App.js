@@ -104,7 +104,7 @@ function App() {
       category: "Project 2",
       title: "Employee Management System",
       src: project2Image,
-      githubLink: "https://github.com/Manas-xt/employee-management-system",
+      githubLink: "https://github.com/beekntr/EmployeeManagement-System",
       websiteLink: "https://ems.kshitijsinghbhati.com",
       content: <DummyContent />,
     },
