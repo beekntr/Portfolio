@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import { BackgroundLines } from "./components/ui/BackgroundLines";
 import { FloatingDock } from "./components/ui/floating-dock";
@@ -20,8 +20,11 @@ import { ContactForm } from './components/ui/ContactForm';
 import { BackgroundBeams } from "./components/ui/background-beams";
 import project1Image from './assets/image.png';
 import project2Image from './assets/ems.png';
+import { GitHubStats } from './components/ui/GitHubStats';
 
 function App() {
+  const [isGitHubStatsOpen, setIsGitHubStatsOpen] = useState(false);
+  
   const links = [
     {
       title: "Home",
@@ -41,7 +44,11 @@ function App() {
     {
       title: "GitHub",
       icon: <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "https://github.com/beekntr",
+      href: "#",
+      onClick: (e) => {
+        e.preventDefault();
+        setIsGitHubStatsOpen(true);
+      }
     },
     {
       title: "LinkedIn",
@@ -228,6 +235,12 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <GitHubStats 
+        isOpen={isGitHubStatsOpen}
+        onClose={() => setIsGitHubStatsOpen(false)}
+        username="beekntr"
+      />
     </div>
   );  
 }

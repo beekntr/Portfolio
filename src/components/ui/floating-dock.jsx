@@ -11,10 +11,12 @@ export const FloatingDock = ({
   mobileClassName
 }) => {
   return (
-    <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
-    </>
+    <div className="fixed bottom-0 left-0 right-0 flex justify-center items-end p-4 z-50">
+      <div className="flex gap-2 items-center">
+        <FloatingDockDesktop items={items} className={desktopClassName} />
+        <FloatingDockMobile items={items} className={mobileClassName} />
+      </div>
+    </div>
   );
 };
 
@@ -108,7 +110,8 @@ function IconContainer({
   mouseX,
   title,
   icon,
-  href
+  href,
+  onClick
 }) {
   let ref = useRef(null);
   const [hovered, setHovered] = useState(false);
@@ -148,7 +151,13 @@ function IconContainer({
   return (
     <a 
       href={href} 
-      onClick={(e) => scrollToSection(e, href)}
+      onClick={(e) => {
+        if (onClick) {
+          onClick(e);
+        } else {
+          scrollToSection(e, href);
+        }
+      }}
       target={href.startsWith('#') ? '' : '_blank'}
       rel={href.startsWith('#') ? '' : 'noopener noreferrer'}
     >
