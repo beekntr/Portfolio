@@ -24,7 +24,7 @@ export function ContactForm() {
     try {
       console.log('Sending form data:', formData);
 
-      const url = 'https://auditorium.api.kshitijsinghbhati.in/api/contact';
+      const url = `${process.env.REACT_APP_API_URL}/api/contact`;
 
       const response = await fetch(url, {
         method: 'POST',
