@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './contact-form.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000 , https://portfolio-backend-v9ve.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000 , https://auditorium.api.kshitijsinghbhati.in';
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ export function ContactForm() {
     try {
       console.log('Sending form data:', formData);
 
-      const url = 'https://portfolio-backend-v9ve.onrender.com/api/contact';
+      const url = 'https://auditorium.api.kshitijsinghbhati.in/api/contact';
 
       const response = await fetch(url, {
         method: 'POST',
