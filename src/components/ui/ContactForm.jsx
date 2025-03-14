@@ -23,15 +23,13 @@ export function ContactForm() {
 
     try {
       console.log('Sending form data:', formData);
-
       const url = `${process.env.REACT_APP_API_URL}/api/contact`;
-
+      
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
@@ -41,14 +39,8 @@ export function ContactForm() {
 
       const data = await response.json();
       console.log('Server response:', data);
-
-      if (response.ok) {
-        setStatus('Message sent successfully!');
-        setFormData({ email: '', message: '' });
-      } else {
-        console.error('Server error:', data);
-        setStatus(`Failed to send message: ${data.error}`);
-      }
+      setStatus('Message sent successfully!');
+      setFormData({ email: '', message: '' });
     } catch (error) {
       console.error('Error:', error);
       setStatus('Error sending message. Please try again.');
