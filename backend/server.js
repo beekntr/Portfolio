@@ -6,21 +6,12 @@ require('dotenv').config();
 
 const app = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: [
-    'https://kshitijsinghbhati.in',
-    'https://www.kshitijsinghbhati.in',
-    'http://localhost:3000'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: false,
-  optionsSuccessStatus: 200
-};
-
-// Apply CORS middleware
-app.use(cors(corsOptions));
+// Replace your existing CORS setup with this
+app.use(cors({
+  origin: '*',  // This will allow all origins temporarily to test
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
 
 app.use(express.json());
 
@@ -37,6 +28,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Add this to check MongoDB connection status
 mongoose.connection.on('error', err => {
+  
   console.error('MongoDB connection error:', err);
 });
 

@@ -40,7 +40,7 @@ export const GitHubStats = ({ isOpen, onClose, username }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 sm:p-4"
         onClick={onClose}
       >
         <motion.div
@@ -48,40 +48,40 @@ export const GitHubStats = ({ isOpen, onClose, username }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-xl max-w-4xl w-full overflow-y-auto max-h-[90vh]"
+          className="bg-white dark:bg-neutral-800 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-xl max-w-4xl w-full overflow-y-auto max-h-[90vh]"
         >
           {loading ? (
-            <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white"></div>
+            <div className="flex justify-center items-center h-48 sm:h-64">
+              <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-gray-900 dark:border-white"></div>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Header */}
               <div className="flex justify-between items-start">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
                   <img
                     src={userData?.avatar_url}
                     alt="Profile"
-                    className="w-20 h-20 rounded-full"
+                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full"
                   />
                   <div>
-                    <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-200">
                       {userData?.name || username}
                     </h2>
                     <a
                       href={userData?.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 hover:text-blue-600 flex items-center gap-1"
+                      className="text-sm sm:text-base text-blue-500 hover:text-blue-600 flex items-center gap-1"
                     >
-                      <IconBrandGithub className="w-4 h-4" />
+                      <IconBrandGithub className="w-3 h-3 sm:w-4 sm:h-4" />
                       {userData?.login}
                     </a>
                   </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 text-lg sm:text-xl"
                 >
                   ✕
                 </button>
@@ -89,37 +89,37 @@ export const GitHubStats = ({ isOpen, onClose, username }) => {
 
               {/* Bio and Location */}
               {userData?.bio && (
-                <p className="text-neutral-600 dark:text-neutral-300">
+                <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300">
                   {userData.bio}
                 </p>
               )}
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
                 <StatCard
-                  icon={<IconBrandGithub className="w-5 h-5" />}
+                  icon={<IconBrandGithub className="w-4 h-4 sm:w-5 sm:h-5" />}
                   label="Repositories"
                   value={userData?.public_repos}
                 />
                 <StatCard
-                  icon={<IconUsers className="w-5 h-5" />}
+                  icon={<IconUsers className="w-4 h-4 sm:w-5 sm:h-5" />}
                   label="Followers"
                   value={userData?.followers}
                 />
                 <StatCard
-                  icon={<IconStar className="w-5 h-5" />}
+                  icon={<IconStar className="w-4 h-4 sm:w-5 sm:h-5" />}
                   label="Total Stars"
                   value={userData?.totalStars}
                 />
                 <StatCard
-                  icon={<IconGitFork className="w-5 h-5" />}
+                  icon={<IconGitFork className="w-4 h-4 sm:w-5 sm:h-5" />}
                   label="Total Forks"
                   value={userData?.totalForks}
                 />
               </div>
 
               {/* GitHub Stats Cards */}
-              <div className="space-y-4">
+              <div className="space-y-2 sm:space-y-4">
                 <img
                   src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&include_all_commits=true&count_private=true`}
                   alt="GitHub Stats"
@@ -157,12 +157,12 @@ export const GitHubStats = ({ isOpen, onClose, username }) => {
 };
 
 const StatCard = ({ icon, label, value }) => (
-  <div className="bg-gray-50 dark:bg-neutral-700/50 p-4 rounded-lg">
-    <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
+  <div className="bg-gray-50 dark:bg-neutral-700/50 p-2 sm:p-3 md:p-4 rounded-lg">
+    <div className="flex items-center gap-1 sm:gap-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-300">
       {icon}
       <span>{label}</span>
     </div>
-    <p className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mt-1">
+    <p className="text-lg sm:text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mt-1">
       {value?.toLocaleString() || 0}
     </p>
   </div>

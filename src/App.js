@@ -3,6 +3,7 @@ import './index.css';
 import { BackgroundLines } from "./components/ui/BackgroundLines";
 import { FloatingDock } from "./components/ui/floating-dock";
 import { Carousel, Card } from "./components/ui/apple-cards-carousel";
+import { CustomCursor } from "./components/ui/CustomCursor";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -44,7 +45,7 @@ function App() {
     {
       title: "GitHub",
       icon: <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "#",
+      href: null,
       onClick: (e) => {
         e.preventDefault();
         setIsGitHubStatsOpen(true);
@@ -157,39 +158,42 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-black">
-      <div id="home" className="relative h-screen bg-white dark:bg-neutral-950">
-        <BackgroundLines className="absolute inset-0 flex items-center justify-center w-full flex-col px-4">
-          <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
-            HEY THERE, I'M, <br /> KSHITIJ SINGH BHATI.
-          </h2>
-          <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
-            STUDENT | SOFTWARE DEVELOPER | CYBER SECURITY ENTHUSIAST
-          </p>
+      <CustomCursor />
+      <div id="home" className="relative h-[30rem] sm:h-[40rem] md:h-screen bg-white dark:bg-neutral-950">
+        <BackgroundLines className="absolute inset-0 flex items-center justify-center w-full flex-col px-4 sm:px-6 lg:px-8">
+          <div className="relative z-20 w-full max-w-4xl mx-auto">
+            <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 font-bold tracking-tight leading-tight sm:leading-snug md:leading-normal">
+              HEY THERE, I'M, <br className="hidden sm:block" /> KSHITIJ SINGH BHATI.
+            </h2>
+            <p className="max-w-xl mx-auto text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-400 text-center px-4 mt-2 sm:mt-4">
+              STUDENT | SOFTWARE DEVELOPER | CYBER SECURITY ENTHUSIAST
+            </p>
+          </div>
         </BackgroundLines>
       </div>
       
       <div className="relative dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2]">
         <div className="absolute pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         
-        <div id="projects" className="relative py-20">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans mb-10">
+        <div id="projects" className="relative py-10 sm:py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans mb-6 sm:mb-10">
               My Projects
             </h2>
             <Carousel items={cards} />
           </div>
         </div>
 
-        <div className="relative py-20">
-          <div className="w-[70%] mx-auto">
-            <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+        <div className="relative py-10 sm:py-16 md:py-20">
+          <div className="w-[90%] sm:w-[80%] md:w-[70%] mx-auto px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-semibold text-center mt-6 relative z-20 py-4 sm:py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
               Building amazing websites <br /> at <Cover>warp speed</Cover>
             </h1>
           </div>
         </div>
       </div>
       
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 md:left-[50%]">
+      <div className="fixed bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
         <FloatingDock
           items={links}
           desktopClassName="shadow-2xl"
@@ -200,32 +204,32 @@ function App() {
       <footer className="h-auto flex flex-col items-center justify-center relative dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2]">
         <div className="absolute pointer-events-none inset-0 dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         
-        <div className="relative z-10 mb-4 pt-20">
+        <div className="relative z-10 mb-4 pt-10 sm:pt-16 md:pt-20">
           <TextHoverEffect 
             text="TOOLS" 
-            className="text-6xl md:text-8xl lg:text-9xl font-bold"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold"
           />
         </div>
         
-        <div className="relative z-10 mb-20">
-          <div className="relative flex size-full max-w-xl items-center justify-center overflow-hidden rounded-lg px-20 pb-20 pt-4">
+        <div className="relative z-10 mb-10 sm:mb-16 md:mb-20">
+          <div className="relative flex size-full max-w-xl items-center justify-center overflow-hidden rounded-lg px-4 sm:px-10 md:px-20 pb-10 sm:pb-16 md:pb-20 pt-4">
             <IconCloud iconSlugs={slugs} />
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-neutral-950"></div>
 
-        <div id="contact" className="relative w-full min-h-[800px] flex flex-col items-center justify-center overflow-hidden bg-neutral-950">
+        <div id="contact" className="relative w-full min-h-[600px] sm:min-h-[700px] md:min-h-[800px] flex flex-col items-center justify-center overflow-hidden bg-neutral-950">
           <div className="absolute inset-0 w-full h-full">
             <BackgroundBeams />
           </div>
 
-          <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center pb-32">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-neutral-200">
+          <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center px-4 sm:px-6 pb-16 sm:pb-24 md:pb-32">
+            <div className="text-center mb-6 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-neutral-200">
                 Contact Me
               </h2>
-              <p className="mt-2 text-neutral-400">
+              <p className="mt-2 text-sm sm:text-base text-neutral-400">
                 Let's discuss your project
               </p>
             </div>

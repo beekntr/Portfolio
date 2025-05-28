@@ -11,8 +11,8 @@ export const FloatingDock = ({
   mobileClassName
 }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex justify-center items-end p-4 z-50">
-      <div className="flex gap-2 items-center">
+    <div className="fixed bottom-0 left-0 right-0 flex justify-center items-end p-2 sm:p-4 z-50">
+      <div className="flex gap-1 sm:gap-2 items-center">
         <FloatingDockDesktop items={items} className={desktopClassName} />
         <FloatingDockMobile items={items} className={mobileClassName} />
       </div>
@@ -22,6 +22,7 @@ export const FloatingDock = ({
 
 const scrollToSection = (e, href) => {
   e.preventDefault();
+  if (!href) return;
   if (href.startsWith('#')) {
     const element = document.querySelector(href);
     if (element) {
@@ -46,7 +47,7 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2">
+            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-1 sm:gap-2">
             {items.map((item, idx) => (
               <motion.div
                 key={item.title}
@@ -64,13 +65,18 @@ const FloatingDockMobile = ({
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}>
                 <a
-                  href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  target={item.href.startsWith('#') ? '' : '_blank'}
-                  rel={item.href.startsWith('#') ? '' : 'noopener noreferrer'}
-                  key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center">
-                  <div className="h-4 w-4">{item.icon}</div>
+                  href={item.href || '#'}
+                  onClick={(e) => {
+                    if (item.onClick) {
+                      item.onClick(e);
+                    } else if (item.href) {
+                      scrollToSection(e, item.href);
+                    }
+                  }}
+                  target={item.href && item.href.startsWith('#') ? '' : '_blank'}
+                  rel={item.href && item.href.startsWith('#') ? '' : 'noopener noreferrer'}
+                  className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center">
+                  <div className="h-3 w-3 sm:h-4 sm:w-4">{item.icon}</div>
                 </a>
               </motion.div>
             ))}
@@ -79,8 +85,8 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center">
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center">
+        <IconLayoutNavbarCollapse className="h-4 w-4 sm:h-5 sm:w-5 text-neutral-500 dark:text-neutral-400" />
       </button>
     </div>
   );
@@ -96,7 +102,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+        "mx-auto hidden md:flex h-12 sm:h-16 gap-2 sm:gap-4 items-end rounded-xl sm:rounded-2xl bg-gray-50 dark:bg-neutral-900 px-2 sm:px-4 pb-2 sm:pb-3",
         className
       )}>
       {items.map((item) => (
@@ -150,16 +156,16 @@ function IconContainer({
 
   return (
     <a 
-      href={href} 
+      href={href || '#'} 
       onClick={(e) => {
         if (onClick) {
           onClick(e);
-        } else {
+        } else if (href) {
           scrollToSection(e, href);
         }
       }}
-      target={href.startsWith('#') ? '' : '_blank'}
-      rel={href.startsWith('#') ? '' : 'noopener noreferrer'}
+      target={href && href.startsWith('#') ? '' : '_blank'}
+      rel={href && href.startsWith('#') ? '' : 'noopener noreferrer'}
     >
       <motion.div
         ref={ref}
@@ -173,7 +179,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs">
+              className="px-1.5 sm:px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-6 sm:-top-8 w-fit text-[10px] sm:text-xs">
               {title}
             </motion.div>
           )}
